@@ -1,31 +1,21 @@
+"use client";
+
 import HeroOverlay from "@/components/HeroOverlay";
 import ThemeToggle from "@/components/ThemeToggle";
 import ContactSection from "@/components/ContactSection";
-import CustomCursor from "@/components/CustomCursor";
-import ParticleBackground from "@/components/ParticleBackground";
 import GrainTexture from "@/components/GrainTexture";
-import SoundToggle from "@/components/SoundToggle";
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative">
+    <main className="min-h-screen relative font-sans">
       {/* Background */}
-      <div className="fixed inset-0 bg-[var(--background)]" />
-
-      {/* Particle Background */}
-      <ParticleBackground />
+      <div className="fixed inset-0 bg-[var(--background)] z-0 transition-colors duration-1000" />
 
       {/* Grain Texture Overlay */}
       <GrainTexture />
 
-      {/* Custom Cursor */}
-      <CustomCursor />
-
       {/* Theme Toggle */}
       <ThemeToggle />
-
-      {/* Sound Toggle */}
-      <SoundToggle />
 
       {/* The 2D Overlay */}
       <HeroOverlay />
@@ -33,6 +23,8 @@ export default function Home() {
       {/* Contact Section */}
       <ContactSection
         linkedinUrl="https://www.linkedin.com/in/shadabriyaztango/"
+        email="tangoshadabriyaz@gmail.com"
+        githubUrl="https://github.com/shadabriyaztango"
       />
     </main>
   );

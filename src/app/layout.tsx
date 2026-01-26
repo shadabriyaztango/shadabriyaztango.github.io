@@ -16,8 +16,11 @@ const pressStart2P = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Shadab Riyaz Tango | Creative Technologist",
+  title: "Shadab",
   description: "AI • Python • Generative Art",
+  icons: {
+    icon: "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+  },
 };
 
 export default function RootLayout({

@@ -9,7 +9,11 @@ import { motion, AnimatePresence } from "framer-motion";
  * Phase 2: Transition to actual output with proper fonts
  */
 
-export default function NameSequenceTyper() {
+interface NameSequenceTyperProps {
+    onComplete?: () => void;
+}
+
+export default function NameSequenceTyper({ onComplete }: NameSequenceTyperProps) {
     const [phase, setPhase] = useState<1 | 2>(1);
     const [displayText, setDisplayText] = useState("");
     const [cursorVisible, setCursorVisible] = useState(true);
@@ -23,7 +27,7 @@ export default function NameSequenceTyper() {
         if (phase !== 1) return;
 
         const sequence: Array<{ type: "type" | "delete" | "pause"; text?: string; count?: number; duration?: number }> = [
-            { type: "type", text: 'print("Hello, World! I am ' },
+            { type: "type", text: 'print("Hello, World! This is ' },
             { type: "type", text: "Shadab " },
             { type: "type", text: "Ta" },
             { type: "pause", duration: 400 },
@@ -42,7 +46,10 @@ export default function NameSequenceTyper() {
             if (stepIndex >= sequence.length) {
                 setIsTypingComplete(true);
                 // Transition to phase 2 after a pause
-                timeoutId = setTimeout(() => setPhase(2), 1500);
+                timeoutId = setTimeout(() => {
+                    setPhase(2);
+                    onComplete?.();
+                }, 1500);
                 return;
             }
 
@@ -124,7 +131,7 @@ export default function NameSequenceTyper() {
                             className="text-base sm:text-lg md:text-xl lg:text-2xl tracking-wide text-[var(--muted)] mb-4 sm:mb-6"
                             style={{ fontFamily: "var(--font-code)" }}
                         >
-                            Hello, World! I am
+                            Hello, World! This is
                         </p>
 
                         {/* Name in Press Start 2P (pixel font) */}
