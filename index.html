@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadab Riyaz Tango</title>
+  <meta name="description" content="Shadab Riyaz Tango — exploring what's possible today.">
+  <meta name="author" content="Shadab Riyaz Tango">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Shadab Riyaz Tango">
+  <meta property="og:description" content="Exploring what's possible today.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/shadab.jpeg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shadab Riyaz Tango">
+  <meta name="twitter:description" content="Exploring what's possible today.">
+  <meta name="twitter:image" content="assets/shadab.jpeg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%230e0e0e'/><text x='12' y='68' font-family='monospace' font-size='50' font-weight='bold' fill='%23e07a5f'>$</text><text x='52' y='68' font-family='monospace' font-size='50' fill='%23e07a5f'>_</text></svg>">
+
+  <!-- Theme flash prevention -->
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Page loader -->
+  <div class="page-loader" id="page-loader"></div>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- Custom cursor -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+    <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero" id="hero">
+    <div class="aurora-bg" aria-hidden="true">
+      <svg viewBox="0 0 1440 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ag1" x1="0%" y1="30%" x2="100%" y2="70%">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.1"/>
+            <stop offset="50%" stop-color="var(--accent)" stop-opacity="0.04"/>
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="ag2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0"/>
+            <stop offset="40%" stop-color="var(--accent)" stop-opacity="0.07"/>
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.02"/>
+          </linearGradient>
+          <linearGradient id="ag3" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.05"/>
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="aurora-wave aurora-wave-1" d="M0,320 C240,180 480,420 720,260 C960,100 1200,380 1440,280 L1440,600 L0,600 Z" fill="url(#ag1)"/>
+        <path class="aurora-wave aurora-wave-2" d="M0,380 C320,240 640,480 960,300 C1120,220 1280,400 1440,340 L1440,600 L0,600 Z" fill="url(#ag2)"/>
+        <path class="aurora-wave aurora-wave-3" d="M0,420 C200,350 500,500 800,360 C1000,280 1200,440 1440,380 L1440,600 L0,600 Z" fill="url(#ag3)"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="tagline">// Hello, World!</p>
+        <h1 class="name" id="name-container"></h1>
+        <p class="role" id="role">Generalist</p>
+        <p class="bio" id="bio">Exploring what's possible today</p>
+        <div class="scroll-indicator" id="scroll-indicator">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="hero-photo" id="hero-photo">
+        <div class="photo-ring"></div>
+        <div class="photo-frame">
+          <img src="assets/shadab.jpeg" alt="Shadab Riyaz Tango" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer" id="footer">
+    <div class="footer-content">
+      <p class="footer-heading">Get in touch</p>
+      <div class="footer-links">
+        <a href="mailto:tangoshadabriyaz@gmail.com" class="footer-link magnetic" aria-label="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="M22 4L12 13L2 4"></path>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/shadabriyaztango/" target="_blank" rel="noopener noreferrer" class="footer-link magnetic" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+        <a href="https://github.com/shadabriyaztango" target="_blank" rel="noopener noreferrer" class="footer-link magnetic" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
