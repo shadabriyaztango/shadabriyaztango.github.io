@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Shadab Riyaz Tango — Always Exploring</title>
+  <meta name="description" content="Shadab Riyaz Tango — always exploring. IT, engineering, whatever's next.">
+  <meta name="author" content="Shadab Riyaz Tango">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Shadab Riyaz Tango">
+  <meta property="og:description" content="Always exploring — IT, engineering, whatever's next.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/shadab.jpeg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shadab Riyaz Tango">
+  <meta name="twitter:description" content="Always exploring — IT, engineering, whatever's next.">
+  <meta name="twitter:image" content="assets/shadab.jpeg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23171614'/><text x='50' y='73' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='62' fill='%23f3f0e8'>S</text></svg>">
+
+  <!-- PWA: installable on desktop & mobile -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Shadab">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#f3f0e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#151412" media="(prefers-color-scheme: dark)">
+
+  <!-- Theme flash prevention -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ======== TOP BAR ======== -->
+  <header class="topbar">
+    <span>PORTFOLIO, SORT OF</span>
+    <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">DARK</button>
+  </header>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero" id="hero">
+    <h1 class="hero__title">
+      <span class="mask"><span>Always</span></span>
+      <span class="mask"><span>Exploring</span></span>
+    </h1>
+    <p class="hero__name">Shadab Riyaz Tango</p>
+    <div class="stamp">
+      <div class="stamp__img">
+        <img src="assets/shadab.jpeg" alt="Shadab Riyaz Tango">
+      </div>
+      <div class="stamp__caption">THAT&rsquo;S ME</div>
+    </div>
+    <span class="scroll-cue">SCROLL &darr;</span>
+  </section>
+
+  <!-- ======== M.O. ======== -->
+  <section class="mo" id="mo">
+    <div class="section-label reveal">M.O. &mdash; HOW I OPERATE</div>
+    <div class="mo__row reveal">
+      <span class="mo__num">01</span>
+      <span class="mo__word">Learn</span>
+      <span class="mo__desc">Systems, networks, code. Breadth over one narrow lane.</span>
+    </div>
+    <div class="mo__row reveal">
+      <span class="mo__num">02</span>
+      <span class="mo__word">Build</span>
+      <span class="mo__desc">Small experiments that teach me something real.</span>
+    </div>
+    <div class="mo__row reveal">
+      <span class="mo__num">03</span>
+      <span class="mo__word">Repeat</span>
+      <span class="mo__desc">The moment it stops being new, I go find the next thing.</span>
+    </div>
+  </section>
+
+  <!-- ======== ABOUT ======== -->
+  <section class="about" id="about">
+    <div class="section-label reveal">ABOUT</div>
+    <p class="about__big reveal">I&rsquo;d rather learn ten adjacent things than one thing forever.</p>
+    <p class="about__body reveal">I&rsquo;m Shadab &mdash; there&rsquo;s no project grid here yet &mdash; this page is a snapshot, and it changes when I do.</p>
+  </section>
+
+  <!-- ======== CONTACT ======== -->
+  <section class="contact" id="contact">
+    <h2 class="contact__title reveal">Say hi.</h2>
+    <div class="pills reveal">
+      <a class="pill" href="mailto:tangoshadabriyaz@gmail.com">EMAIL &nearr;</a>
+      <a class="pill" href="https://www.linkedin.com/in/shadabriyaztango/" target="_blank" rel="noopener noreferrer">LINKEDIN &nearr;</a>
+      <a class="pill" href="https://github.com/shadabriyaztango" target="_blank" rel="noopener noreferrer">GITHUB &nearr;</a>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="site-footer">
+    <span>&copy; 2026 SHADAB RIYAZ TANGO</span>
+    <span>NO FIXED TITLE, ON PURPOSE</span>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- Service worker: offline support + installability -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>
