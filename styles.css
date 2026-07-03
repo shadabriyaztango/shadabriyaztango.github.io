@@ -283,14 +283,19 @@ body {
 /* ---- Mobile ---- */
 
 @media (max-width: 719px) {
+  .topbar { padding: 16px 6vw; }
   .hero { min-height: auto; padding: 5vh 6vw 8vh; }
-  .stamp { position: static; align-self: flex-start; margin-top: 44px; }
-  .stamp__img { width: 120px; height: 140px; }
-  .scroll-cue { position: static; display: inline-block; margin-top: 7vh; }
-  .mo__row { grid-template-columns: 34px 1fr; }
+  .hero__title { font-size: clamp(44px, 12vw, 80px); }
+  .stamp { position: static; align-self: flex-start; margin-top: 34px; }
+  .stamp__img { width: 110px; height: 130px; }
+  .scroll-cue { position: static; display: inline-block; margin-top: 6vh; }
+  .mo__row { grid-template-columns: 34px 1fr; gap: 8px 16px; padding: 20px 0; }
+  .mo__word { font-size: clamp(36px, 8vw, 54px); }
   .mo__desc { grid-column: 1 / -1; max-width: none; }
-  .about { padding: 9vh 6vw; }
-  .contact { padding: 10vh 6vw 4vh; }
+  .about { padding: 8vh 6vw; }
+  .contact { padding: 8vh 6vw 4vh; }
+  .contact__title { font-size: clamp(48px, 12vw, 80px); }
+  .pill { padding: 9px 18px; font-size: 10.5px; }
 }
 
 /* ---- Reduced motion ---- */

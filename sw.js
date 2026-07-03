@@ -1,7 +1,7 @@
 /* Service worker — offline app shell for the portfolio.
    Bump CACHE version whenever you change a cached file. */
 
-const CACHE = 'srt-portfolio-v2';
+const CACHE = 'srt-portfolio-v3';
 
 const ASSETS = [
   './',
