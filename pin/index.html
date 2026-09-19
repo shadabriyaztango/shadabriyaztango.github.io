@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pin — Send a Bangalore Location</title>
+  <meta name="description" content="Pick a Bangalore spot and send it on WhatsApp in one tap.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23171614'/><path d='M50 22c-11 0-20 9-20 20 0 15 20 36 20 36s20-21 20-36c0-11-9-20-20-20zm0 27a7 7 0 1 1 0-14 7 7 0 0 1 0 14z' fill='%23f3f0e8'/></svg>">
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Pin">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#f3f0e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#151412" media="(prefers-color-scheme: dark)">
+
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="pin.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="back" href="../">&larr; SHADAB</a>
+    <span class="topbar__tag">PIN</span>
+    <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">DARK</button>
+  </header>
+
+  <main>
+
+    <!-- ======== HERO ======== -->
+    <section class="hero">
+      <h1 class="hero__title">
+        <span class="mask"><span>Always</span></span>
+        <span class="mask"><span>Bangalore</span></span>
+      </h1>
+      <p class="hero__sub">
+        Pick a spot. Tap send. WhatsApp opens with a Bangalore map pin already in the box &mdash;
+        wherever you actually are.
+      </p>
+    </section>
+
+    <!-- ======== 01 — THE PIN ======== -->
+    <section class="block">
+      <div class="section-label">01 &mdash; THE PIN</div>
+
+      <div class="card">
+        <div class="card__head">
+          <div class="card__id">
+            <div class="card__name" id="pin-name">Koramangala</div>
+            <div class="card__coords" id="pin-coords">12.935200, 77.624500</div>
+          </div>
+          <button class="ghost-btn" id="nudge" title="Re-roll the drift">&#8635;&nbsp;NUDGE</button>
+        </div>
+
+        <div class="map" id="map" aria-label="Map of the selected Bangalore location">
+          <div class="map__fallback">MAP NEEDS A CONNECTION &mdash; SENDING STILL WORKS</div>
+          <div class="map__layer" id="map-layer"></div>
+          <div class="map__marker" id="map-marker" aria-hidden="true"></div>
+          <div class="map__zoom">
+            <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+            <button type="button" id="zoom-out" aria-label="Zoom out">&#8722;</button>
+          </div>
+          <a class="map__attr" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">&copy; OpenStreetMap</a>
+        </div>
+        <p class="card__hint">Drag to move around. Tap to drop the pin anywhere.</p>
+      </div>
+    </section>
+
+    <!-- ======== 02 — AREAS ======== -->
+    <section class="block">
+      <div class="section-label">02 &mdash; AREAS</div>
+      <div class="chips" id="chips"></div>
+
+      <div class="custom">
+        <div class="custom__row">
+          <label class="field">
+            <span class="field__label">LATITUDE</span>
+            <input type="text" id="lat-input" inputmode="decimal" autocomplete="off" placeholder="12.935200">
+          </label>
+          <label class="field">
+            <span class="field__label">LONGITUDE</span>
+            <input type="text" id="lng-input" inputmode="decimal" autocomplete="off" placeholder="77.624500">
+          </label>
+        </div>
+        <div class="custom__actions">
+          <button class="ghost-btn" id="apply-coords">USE THESE COORDS</button>
+          <button class="ghost-btn" id="save-default">&#9733;&nbsp;SAVE AS MY DEFAULT</button>
+        </div>
+        <p class="custom__note" id="default-note"></p>
+      </div>
+    </section>
+
+    <!-- ======== 03 — OPTIONS ======== -->
+    <section class="block">
+      <div class="section-label">03 &mdash; OPTIONS</div>
+
+      <fieldset class="opt">
+        <legend class="opt__legend">DRIFT</legend>
+        <p class="opt__help">A little randomness each send, so the same coordinates don&rsquo;t repeat exactly.</p>
+        <div class="segmented" id="drift" role="radiogroup" aria-label="Drift radius">
+          <button type="button" role="radio" data-drift="0" aria-checked="false">EXACT</button>
+          <button type="button" role="radio" data-drift="200" aria-checked="true">~200 M</button>
+          <button type="button" role="radio" data-drift="1000" aria-checked="false">~1 KM</button>
+          <button type="button" role="radio" data-drift="3000" aria-checked="false">~3 KM</button>
+        </div>
+      </fieldset>
+
+      <label class="field">
+        <span class="field__label">CAPTION <em>(OPTIONAL)</em></span>
+        <input type="text" id="caption" autocomplete="off" maxlength="120" placeholder="Leave empty to send just the map link">
+      </label>
+
+      <label class="field">
+        <span class="field__label">SEND STRAIGHT TO A NUMBER <em>(OPTIONAL)</em></span>
+        <input type="tel" id="phone" inputmode="tel" autocomplete="off" placeholder="91XXXXXXXXXX — country code, no +">
+        <span class="field__note">Leave empty to pick the chat inside WhatsApp.</span>
+      </label>
+    </section>
+
+    <!-- ======== 04 — SEND ======== -->
+    <section class="block block--send">
+      <div class="section-label">04 &mdash; SEND</div>
+      <button class="send-btn" id="send">SEND ON WHATSAPP</button>
+      <button class="ghost-btn ghost-btn--wide" id="copy">COPY MAP LINK</button>
+      <p class="preview" id="preview"></p>
+      <p class="toast" id="toast" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- ======== THE REAL BLUE CARD ======== -->
+    <section class="block">
+      <div class="section-label">THE FINE PRINT</div>
+
+      <details class="drop">
+        <summary>What this actually sends</summary>
+        <div class="drop__body">
+          <p>
+            This sends a <strong>Google Maps link</strong> into the chat. WhatsApp expands it into a
+            map thumbnail, so it reads much like a shared location &mdash; but it is a link, not
+            WhatsApp&rsquo;s native blue location card.
+          </p>
+          <p>
+            No website can fake that native card. WhatsApp reads GPS straight from the operating
+            system when you use <em>Attach &rarr; Location</em>. To change what it reads, you have to
+            change what the OS reports &mdash; see below.
+          </p>
+        </div>
+      </details>
+
+      <details class="drop">
+        <summary>Getting the real native location card (Android)</summary>
+        <div class="drop__body">
+          <p>Android has mock locations built in. Once it&rsquo;s on, WhatsApp&rsquo;s own <em>Attach &rarr; Location &rarr; Send your current location</em> shows Bangalore by itself.</p>
+          <ol>
+            <li><strong>Unlock Developer options.</strong> Settings &rarr; About phone &rarr; tap <em>Build number</em> seven times.</li>
+            <li><strong>Install a mock GPS app</strong> from the Play Store (search &ldquo;mock location&rdquo; or &ldquo;fake GPS&rdquo;).</li>
+            <li><strong>Point Android at it.</strong> Settings &rarr; System &rarr; Developer options &rarr; <em>Select mock location app</em> &rarr; choose it.</li>
+            <li><strong>Stop Google correcting you.</strong> Settings &rarr; Location &rarr; Location services &rarr; turn off <em>Wi&#8209;Fi scanning</em> and <em>Bluetooth scanning</em>. Otherwise the fused provider can quietly snap you back to your real position.</li>
+            <li><strong>Drop the pin</strong> in Bangalore inside the mock app and start it. WhatsApp now reports Bangalore.</li>
+          </ol>
+          <p class="drop__warn">
+            Worth knowing: a static mock pin never moves, so <em>live location</em> looks frozen over
+            time. Many banking, delivery and ride&#8209;hailing apps detect mock locations and will
+            refuse to work while it&rsquo;s on. Turning off the developer setting puts everything back.
+          </p>
+        </div>
+      </details>
+
+      <details class="drop">
+        <summary>On iPhone</summary>
+        <div class="drop__body">
+          <p>
+            iOS has no built&#8209;in equivalent. The clean route is a Mac with Xcode &mdash; connect the
+            iPhone, then <em>Debug &rarr; Simulate Location</em> (or Devices &amp; Simulators) with a
+            Bangalore GPX point. It holds until you disconnect.
+          </p>
+          <p>Without a Mac, this page&rsquo;s map link is the practical option.</p>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>&copy; 2026 SHADAB RIYAZ TANGO</span>
+    <span>12.9716&deg; N, 77.5946&deg; E</span>
+  </footer>
+
+  <script src="pin.js" defer></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

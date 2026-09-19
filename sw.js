@@ -26,7 +26,13 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
+      Promise.all(
+        keys
+          // Only our own caches — the origin's cache store is shared with the
+          // other service worker on this site.
+          .filter((k) => k.startsWith('srt-portfolio-') && k !== CACHE)
+          .map((k) => caches.delete(k))
+      )
     )
   );
   self.clients.claim();
