@@ -1,7 +1,7 @@
 /* Service worker — offline app shell for the portfolio.
    Bump CACHE version whenever you change a cached file. */
 
-const CACHE = 'srt-portfolio-v4';
+const CACHE = 'srt-portfolio-v5';
 
 const ASSETS = [
   './',
@@ -35,6 +35,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
+  // The game lives in its own folder; let the network serve it so updates show up.
+  if (new URL(req.url).pathname.includes('/mega-ramp/')) return;
 
   // Same-origin: cache-first, fall back to network and cache the result.
   if (new URL(req.url).origin === self.location.origin) {
